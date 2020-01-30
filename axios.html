@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li>名称：{{user.username}}</li>
+    </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://unpkg.com/axios@0.19.2/dist/axios.min.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                user: {
+                    username: null
+                }
+            }
+        },
+        mounted() {
+            axios
+                .get("http://localhost:8080/user")
+                .then(response => (this.user = response.data));
+        }
+    });
+</script>
+</body>
+</html>
